@@ -1,0 +1,27 @@
+server:
+  port: ${CORE_ID_PORT:8080}
+
+spring:
+  application:
+    name: core-id-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/${POSTGRES_DB:zidcr_db}
+    username: ${POSTGRES_USER:zidcr_admin}
+    password: ${POSTGRES_PASSWORD:super_secure_postgres_password}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: ${RABBITMQ_DEFAULT_USER:admin}
+    password: ${RABBITMQ_DEFAULT_PASS:secure_rabbitmq_password}
+
+zidcr:
+  security:
+    hsm:
+      path: ${HSM_MODULE_PATH:/opt/hsm/lib/libcsPKCS11.so}
+      pin: ${HSM_PIN:123456}
